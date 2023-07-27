@@ -5,23 +5,28 @@ const tweetBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
 let apiQuotes = [];
+
+const yourFunction = async () => {
+    await delay(5000);
+    console.log("Waited 5s");
+  
+    await delay(5000);
+    console.log("Waited an additional 5s");
+  };
+  
+// Show loading
+async function loading() {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+    
+}
 
 // Hide loading
 function complete() {
     quoteContainer.hidden = false;
     loader.hidden = true;
 }
-
-// Show loading
-async function loading() {
-    loader.hidden = false;
-    quoteContainer.hidden = true;
-    await delay(5000);
-    complete();
-}
-
 
 // Show New Quote
 function newQuote() {

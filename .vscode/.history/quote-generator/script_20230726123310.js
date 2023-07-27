@@ -1,31 +1,13 @@
 const quoteContainer = document.getElementById('quote-container');
 const quoteText = document.getElementById('quote');
 const authorText = document.getElementById('author');
-const tweetBtn = document.getElementById('twitter');
+const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
-const loader = document.getElementById('loader');
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
 let apiQuotes = [];
-
-// Hide loading
-function complete() {
-    quoteContainer.hidden = false;
-    loader.hidden = true;
-}
-
-// Show loading
-async function loading() {
-    loader.hidden = false;
-    quoteContainer.hidden = true;
-    await delay(5000);
-    complete();
-}
-
 
 // Show New Quote
 function newQuote() {
-    loading();
     // Pick a random quote from apiQuotes array
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
     // Check if author field is blank
@@ -35,14 +17,13 @@ function newQuote() {
             authorText.textContent = quote.author
         }
         
-    quoteText.textContent = quote.text;
+    quoteText.textContent = quote.text;}
     if (quote.text.length > 50) {
         quoteText.classList.add('long-quote');
     } else {
         quoteText.classList.remove('long-quote');
     }
-    complete();
-    }
+    
 
 // Get Quotes From API
 async function getQuotes() {
@@ -68,4 +49,3 @@ tweetBtn.addEventListener('click',tweetQuote);
 
 // On load
 getQuotes();
-
